@@ -224,14 +224,25 @@ def build_pheno() -> None:
 # --------------------------------------------------------------------------
 # 3. GLAMOS — bilan de masse des glaciers
 # --------------------------------------------------------------------------
-GLAMOS_URL = "https://doi.glamos.ch/data/massbalance/massbalance_2025_r2025.zip"
-GLAMOS_MEMBER = "massbalance_fixdate_2025_r2025.csv"
+GLAMOS_RELEASE = "https://doi.glamos.ch/data/massbalance/massbalance_{y}_r{y}.zip"
+GLAMOS_PREMIERE_RELEASE = 2025  # première version publiée sous cette forme
+
+
+def _glamos_derniere_release() -> int:
+    """GLAMOS publie une release par an, en novembre. On prend la plus récente en ligne."""
+    for annee in range(pd.Timestamp.today().year, GLAMOS_PREMIERE_RELEASE - 1, -1):
+        r = SESSION.head(GLAMOS_RELEASE.format(y=annee), timeout=TIMEOUT, allow_redirects=True)
+        if r.ok:
+            return annee
+    raise RuntimeError("aucune release GLAMOS accessible")
 
 
 def build_glamos() -> None:
     print("GLAMOS — bilan de masse des glaciers")
-    z = zipfile.ZipFile(io.BytesIO(get(GLAMOS_URL).content))
-    raw = z.read(GLAMOS_MEMBER).decode("utf-8").splitlines()
+    annee = _glamos_derniere_release()
+    log(f"release {annee}")
+    z = zipfile.ZipFile(io.BytesIO(get(GLAMOS_RELEASE.format(y=annee)).content))
+    raw = z.read(f"massbalance_fixdate_{annee}_r{annee}.csv").decode("utf-8").splitlines()
     start = next(i for i, l in enumerate(raw) if l.startswith("glacier name"))
     # ligne d'en-tête + 2 lignes de description (noms courts, unités)
     header = raw[start].split(",")

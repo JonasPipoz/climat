@@ -1,0 +1,79 @@
+name: Mise à jour des données
+
+# Les sources ne bougent pas au même rythme : l'inventaire des GES paraît en avril,
+# les glaciers en novembre, MétéoSuisse en continu, le registre Pronovo chaque mois.
+# Un passage mensuel couvre tout le monde sans marteler les serveurs fédéraux.
+on:
+  schedule:
+    - cron: "0 5 3 * *"   # le 3 de chaque mois, 05:00 UTC
+  workflow_dispatch:       # déclenchement manuel depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maj-donnees
+  cancel-in-progress: false
+
+jobs:
+  reconstruire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Reconstruire les jeux de données
+        id: build
+        # Une source indisponible ne doit pas empêcher de committer les autres :
+        # on note l'échec et on le fait remonter à la fin du job.
+        run: |
+          set +e
+          python scripts/build_data.py
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Committer si quelque chose a changé
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data; then
+            echo "Aucun changement dans data/."
+            echo "change=non" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add data
+          git commit -m "Mise à jour des données ($(date -u +%Y-%m-%d))"
+          git push
+          echo "change=oui" >> "$GITHUB_OUTPUT"
+
+      - name: Résumé
+        run: |
+          {
+            echo "### Mise à jour des données"
+            echo ""
+            if [ "${{ steps.commit.outputs.change }}" = "oui" ]; then
+              echo "Nouvelles données committées :"
+              echo ""
+              echo '```'
+              git show --stat --oneline HEAD | tail -n +2
+              echo '```'
+            else
+              echo "Aucune source n'a publié de nouvelles valeurs."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Signaler les sources en échec
+        if: steps.build.outputs.code != '0'
+        run: |
+          echo "::error::Au moins une source n'a pas pu être reconstruite — voir le journal de l'étape « Reconstruire les jeux de données »."
+          exit 1
