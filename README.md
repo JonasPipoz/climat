@@ -1,5 +1,7 @@
 # Tableau de bord climat — Suisse
 
+**→ [climat-switzerland.streamlit.app](https://climat-switzerland.streamlit.app/)**
+
 Un tableau de bord Streamlit qui suit deux familles d'indicateurs, côte à côte :
 
 - **la transition** — ce que la Suisse change : émissions de gaz à effet de serre par secteur,
@@ -17,7 +19,7 @@ Aucune donnée n'est saisie à la main.
 | Émissions de GES par secteur et par gaz | OFEV, inventaire national (LINDAS, cube `ubd000502`) | 1990 → |
 | Températures, jours extrêmes, précipitations | MétéoSuisse, réseau NBCN (séries homogénéisées) | 1864 → (Bâle 1755) |
 | Phénologie (floraisons, feuillaisons, vendanges) | MétéoSuisse, réseau phénologique, 175 stations | 1951 → |
-| Bilan de masse des glaciers | GLAMOS, *Swiss Glacier Mass Balance*, release 2025 | 1885 → |
+| Bilan de masse des glaciers | GLAMOS, *Swiss Glacier Mass Balance*, dernière release en ligne | 1885 → |
 | Installations de production d'électricité | OFEN / Pronovo, registre fédéral | 1900 → |
 | Véhicules routiers par carburant | OFS, STAT-TAB (`px-x-1103020100_111`, `px-x-1103020200_121`) | 2010 → |
 | Population résidante par canton | OFS, STAT-TAB (`px-x-0102020000_101`) | 1971 → |
@@ -52,6 +54,10 @@ MétéoSuisse en continu, le registre Pronovo chaque mois.
 
 ## Lancer le tableau de bord
 
+En ligne : **[climat-switzerland.streamlit.app](https://climat-switzerland.streamlit.app/)**.
+
+En local :
+
 ```bash
 .venv/bin/streamlit run app.py
 ```
@@ -66,48 +72,45 @@ après une modification :
 .venv/bin/python scripts/render_figures.py figures/
 ```
 
-## Déploiement sur Streamlit Community Cloud
+## Déploiement
 
-L'application ne fait **aucun appel réseau à l'exécution** : elle lit uniquement les CSV de
-`data/`, qui sont versionnés dans le dépôt (3,8 Mo au total). Une indisponibilité des serveurs
-fédéraux ne peut donc pas casser la page en ligne — elle ne fait que retarder la prochaine
-mise à jour des données.
+L'application est déployée sur Streamlit Community Cloud :
+**[climat-switzerland.streamlit.app](https://climat-switzerland.streamlit.app/)**, servie depuis
+la branche `main` de ce dépôt, fichier principal `app.py`. Aucun secret ni variable
+d'environnement n'est nécessaire.
 
-1. Créer un dépôt GitHub et y pousser le projet :
+Elle ne fait **aucun appel réseau à l'exécution** : elle lit uniquement les CSV de `data/`,
+versionnés ici (3,8 Mo au total). Une indisponibilité des serveurs fédéraux ne peut donc pas
+casser la page en ligne — elle ne fait que retarder la prochaine mise à jour des données.
 
-```bash
-git init -b main
-git add .
-git commit -m "Tableau de bord climat Suisse"
-git remote add origin git@github.com:<compte>/<depot>.git
-git push -u origin main
-```
+Cloud redéploie à chaque `push` sur `main`. Pour publier un changement, il suffit donc de
+pousser.
 
-2. Sur [share.streamlit.io](https://share.streamlit.io), *New app* → choisir le dépôt, la
-   branche `main` et le fichier principal `app.py`. Aucun secret ni variable d'environnement
-   n'est nécessaire.
-
-Points de vigilance :
+Points de vigilance si le déploiement est refait ailleurs :
 
 - `requirements.txt` doit rester à la racine — c'est ce que Cloud installe. `kaleido`
   (rendu PNG) est volontairement dans `requirements-dev.txt` : inutile en ligne, et lourd.
 - `data/` **doit** être versionné : Cloud ne lance pas `scripts/build_data.py`.
-- L'application tient largement dans l'enveloppe mémoire de l'offre gratuite (quelques Mo de
-  CSV, tout en cache `st.cache_data`).
 - Une application gratuite se met en veille après une période sans visite et redémarre à la
   première consultation suivante.
 
-### Rafraîchir les données d'une application déjà en ligne
+### Mise à jour automatique des données
 
-Cloud redéploie à chaque `push`. Il suffit donc de reconstruire localement et de pousser :
+Le workflow [`.github/workflows/maj-donnees.yml`](.github/workflows/maj-donnees.yml) reconstruit
+les jeux de données le 3 de chaque mois (et à la demande, depuis l'onglet Actions). Il ne committe
+que si une source a effectivement publié de nouvelles valeurs, et le `push` qui en résulte
+déclenche le redéploiement de l'application.
+
+Une source indisponible n'empêche pas de committer les autres : l'échec est signalé en fin de job.
+Le workflow a besoin de *Settings → Actions → General → Workflow permissions* réglé sur
+**Read and write permissions**.
+
+À la main, si besoin :
 
 ```bash
 .venv/bin/python scripts/build_data.py
 git add data && git commit -m "Mise à jour des données" && git push
 ```
-
-Un workflow GitHub Actions mensuel peut faire ce commit à votre place — l'inventaire des GES
-paraît en avril, les glaciers en novembre, le registre Pronovo chaque mois.
 
 ## Organisation
 
