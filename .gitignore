@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# figures régénérables : scripts/render_figures.py
+figures/
+
+# jamais de secrets dans le dépôt
+.streamlit/secrets.toml

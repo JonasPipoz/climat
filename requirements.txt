@@ -1,0 +1,8 @@
+# Dépendances de l'application ET du script de construction des données.
+# Bornes hautes volontaires : Streamlit Community Cloud réinstalle à chaque
+# redéploiement et prendrait sinon la dernière version majeure publiée.
+streamlit>=1.40,<2
+pandas>=2.2,<4
+numpy>=1.26,<3
+plotly>=5.22,<8
+requests>=2.32,<3

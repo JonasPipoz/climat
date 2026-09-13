@@ -1,0 +1,166 @@
+annee,carburant,valeur
+2010,Autre,302
+2010,Diesel,90547
+2010,Diesel-électrique: hybride normal,4
+2010,Diesel-électrique: hybride rechargeable,0
+2010,Essence,200576
+2010,Essence-électrique: hybride normal,4245
+2010,Essence-électrique: hybride rechargeable,1
+2010,Gaz (monovalent et bivalent),721
+2010,Hydrogène,0
+2010,Sans moteur,0
+2010,Électrique,201
+2011,Autre,489
+2011,Diesel,109324
+2011,Diesel-électrique: hybride normal,18
+2011,Diesel-électrique: hybride rechargeable,0
+2011,Essence,211540
+2011,Essence-électrique: hybride normal,5442
+2011,Essence-électrique: hybride rechargeable,2
+2011,Gaz (monovalent et bivalent),651
+2011,Hydrogène,0
+2011,Sans moteur,0
+2011,Électrique,489
+2012,Autre,406
+2012,Diesel,124911
+2012,Diesel-électrique: hybride normal,978
+2012,Diesel-électrique: hybride rechargeable,9
+2012,Essence,200576
+2012,Essence-électrique: hybride normal,5671
+2012,Essence-électrique: hybride rechargeable,50
+2012,Gaz (monovalent et bivalent),519
+2012,Hydrogène,1
+2012,Sans moteur,0
+2012,Électrique,924
+2013,Autre,87
+2013,Diesel,115656
+2013,Diesel-électrique: hybride normal,704
+2013,Diesel-électrique: hybride rechargeable,261
+2013,Essence,185070
+2013,Essence-électrique: hybride normal,6065
+2013,Essence-électrique: hybride rechargeable,128
+2013,Gaz (monovalent et bivalent),791
+2013,Hydrogène,0
+2013,Sans moteur,0
+2013,Électrique,1392
+2014,Autre,22
+2014,Diesel,113304
+2014,Diesel-électrique: hybride normal,520
+2014,Diesel-électrique: hybride rechargeable,208
+2014,Essence,180875
+2014,Essence-électrique: hybride normal,5637
+2014,Essence-électrique: hybride rechargeable,528
+2014,Gaz (monovalent et bivalent),1041
+2014,Hydrogène,0
+2014,Sans moteur,0
+2014,Électrique,1948
+2015,Autre,13
+2015,Diesel,127899
+2015,Diesel-électrique: hybride normal,843
+2015,Diesel-électrique: hybride rechargeable,266
+2015,Essence,185469
+2015,Essence-électrique: hybride normal,5587
+2015,Essence-électrique: hybride rechargeable,2089
+2015,Gaz (monovalent et bivalent),1080
+2015,Hydrogène,15
+2015,Sans moteur,0
+2015,Électrique,3882
+2016,Autre,4
+2016,Diesel,125595
+2016,Diesel-électrique: hybride normal,493
+2016,Diesel-électrique: hybride rechargeable,145
+2016,Essence,178666
+2016,Essence-électrique: hybride normal,7274
+2016,Essence-électrique: hybride rechargeable,2675
+2016,Gaz (monovalent et bivalent),944
+2016,Hydrogène,10
+2016,Sans moteur,0
+2016,Électrique,3525
+2017,Autre,1
+2017,Diesel,113848
+2017,Diesel-électrique: hybride normal,182
+2017,Diesel-électrique: hybride rechargeable,100
+2017,Essence,183637
+2017,Essence-électrique: hybride normal,8293
+2017,Essence-électrique: hybride rechargeable,3271
+2017,Gaz (monovalent et bivalent),769
+2017,Hydrogène,2
+2017,Sans moteur,0
+2017,Électrique,4929
+2018,Autre,5
+2018,Diesel,90360
+2018,Diesel-électrique: hybride normal,807
+2018,Diesel-électrique: hybride rechargeable,62
+2018,Essence,188847
+2018,Essence-électrique: hybride normal,10587
+2018,Essence-électrique: hybride rechargeable,3976
+2018,Gaz (monovalent et bivalent),805
+2018,Hydrogène,27
+2018,Sans moteur,0
+2018,Électrique,5411
+2019,Autre,2
+2019,Diesel,79461
+2019,Diesel-électrique: hybride normal,3847
+2019,Diesel-électrique: hybride rechargeable,10
+2019,Essence,192119
+2019,Essence-électrique: hybride normal,18285
+2019,Essence-électrique: hybride rechargeable,4199
+2019,Gaz (monovalent et bivalent),1250
+2019,Hydrogène,27
+2019,Sans moteur,0
+2019,Électrique,13177
+2020,Autre,0
+2020,Diesel,51951
+2020,Diesel-électrique: hybride normal,5363
+2020,Diesel-électrique: hybride rechargeable,161
+2020,Essence,118987
+2020,Essence-électrique: hybride normal,27510
+2020,Essence-électrique: hybride rechargeable,14132
+2020,Gaz (monovalent et bivalent),571
+2020,Hydrogène,48
+2020,Sans moteur,0
+2020,Électrique,19752
+2021,Autre,3
+2021,Diesel,32639
+2021,Diesel-électrique: hybride normal,9692
+2021,Diesel-électrique: hybride rechargeable,572
+2021,Essence,100768
+2021,Essence-électrique: hybride normal,44738
+2021,Essence-électrique: hybride rechargeable,21231
+2021,Gaz (monovalent et bivalent),296
+2021,Hydrogène,66
+2021,Sans moteur,0
+2021,Électrique,32017
+2022,Autre,0
+2022,Diesel,26608
+2022,Diesel-électrique: hybride normal,10941
+2022,Diesel-électrique: hybride rechargeable,272
+2022,Essence,86231
+2022,Essence-électrique: hybride normal,47100
+2022,Essence-électrique: hybride rechargeable,17540
+2022,Gaz (monovalent et bivalent),132
+2022,Hydrogène,72
+2022,Sans moteur,0
+2022,Électrique,40507
+2023,Autre,0
+2023,Diesel,23940
+2023,Diesel-électrique: hybride normal,12653
+2023,Diesel-électrique: hybride rechargeable,457
+2023,Essence,85205
+2023,Essence-électrique: hybride normal,58079
+2023,Essence-électrique: hybride rechargeable,22637
+2023,Gaz (monovalent et bivalent),53
+2023,Hydrogène,28
+2023,Sans moteur,0
+2023,Électrique,52929
+2024,Autre,1
+2024,Diesel,23009
+2024,Diesel-électrique: hybride normal,12786
+2024,Diesel-électrique: hybride rechargeable,520
+2024,Essence,71479
+2024,Essence-électrique: hybride normal,70535
+2024,Essence-électrique: hybride rechargeable,20621
+2024,Gaz (monovalent et bivalent),7
+2024,Hydrogène,13
+2024,Sans moteur,0
+2024,Électrique,46581

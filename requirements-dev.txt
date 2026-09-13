@@ -1,0 +1,3 @@
+-r requirements.txt
+kaleido>=0.2   # rendu PNG des figures (scripts/render_figures.py)
+pyflakes

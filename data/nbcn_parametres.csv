@@ -1,0 +1,17 @@
+colonne,libelle,unite
+temp_moy,Température moyenne annuelle,°C
+temp_anomalie,Écart à la norme 1991-2020,°C
+temp_max_moy,Moyenne des maxima journaliers,°C
+temp_min_moy,Moyenne des minima journaliers,°C
+temp_max_abs,Maximum annuel absolu,°C
+temp_min_abs,Minimum annuel absolu,°C
+jours_ete,Jours d'été (Tmax ≥ 25 °C),jours
+jours_chaleur,Jours de chaleur (Tmax ≥ 30 °C),jours
+jours_canicule,Jours de forte chaleur (Tmax ≥ 35 °C),jours
+nuits_tropicales,Nuits tropicales (Tmin ≥ 20 °C),jours
+jours_gel,Jours de gel (Tmin < 0 °C),jours
+jours_hiver,Jours d'hiver (Tmax < 0 °C),jours
+precip,Précipitations annuelles,mm
+precip_pct_norme,"Précipitations, % de la norme 1991-2020",%
+ensoleillement,Durée d'ensoleillement,h
+ensoleillement_pct_norme,"Ensoleillement, % de la norme 1991-2020",%
